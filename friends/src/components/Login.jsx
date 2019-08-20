@@ -40,28 +40,20 @@ const LoginForm = (props) =>
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <div>
-                    {/* {props.touched.username && props.errors.username && <p>{props.errors.username}</p>} */}
-                    {/* <Field type="text" name="username" placeholder="Username" /> */}
-                    <input 
-                        type="text" 
-                        name="username" 
-                        placeholder="Username" 
-                        value={inputs.username}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    {/* {props.touched.password && props.errors.password && <p>{props.errors.password}</p>} */}
-                    {/* <Field type="password" name="password" placeholder="Password" /> */}
-                    <input 
-                        type="password" 
-                        name="password" 
-                        placeholder="Password" 
-                        value={inputs.password}
-                        onChange={handleChange}
-                    />
-                </div>
+                <input 
+                    type="text" 
+                    name="username" 
+                    placeholder="Username" 
+                    value={inputs.username}
+                    onChange={handleChange}
+                />
+                <input 
+                    type="password" 
+                    name="password" 
+                    placeholder="Password" 
+                    value={inputs.password}
+                    onChange={handleChange}
+                />
                 <Button onClick={handleSubmit} variant="outlined" color="primary" style={{width:"175px"}}>
                     {state.isLoading ? <Loader type="TailSpin" color="#00BFFF" height={10} width={10} /> 
                     : 'Submit'}
@@ -72,32 +64,3 @@ const LoginForm = (props) =>
 }
 
 export default LoginForm
-
-// const FormikLoginForm = withFormik({
-//     mapPropsToValues({ username, password, isLoading })
-//     {
-//         return {
-//             username: username || "",
-//             password: password || "",
-//         }
-//     },
-
-//     //vallidation
-//     validationSchema: Yup.object().shape({
-//         username: Yup.string()
-//             .required("Username is required"),
-//         password: Yup.string()
-//             .min(6, "Password must be 6 characters or longer")
-//             .required("Password is required")
-//     }),
-
-//     handleSubmit(values)
-//     {
-//         isLoading = true
-//         // axios.post()
-//     }
-
-
-// })(LoginForm)
-
-// export default FormikLoginForm
