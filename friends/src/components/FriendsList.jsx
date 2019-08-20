@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getFriends } from "../actions";
 import Friend from './Friend'
 import NewFriendForm from './NewFriendForm'
+import {CardGrid, FriendListFB} from './StyledComps'
 
 const FriendsList = () =>
 {
@@ -14,13 +15,13 @@ const FriendsList = () =>
         }, [])
 
     return (
-        <>
+        <FriendListFB>
             <NewFriendForm />
             <div>FriendsList</div>
-            <div>
+            <CardGrid>
                 {state.friends.map(friend => <Friend key={friend.id} friend={friend} /> )}
-            </div>
-        </>
+            </CardGrid>
+        </FriendListFB>
     )
 }
 

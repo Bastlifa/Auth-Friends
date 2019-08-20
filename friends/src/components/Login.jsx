@@ -1,7 +1,4 @@
 import React, {useState} from "react"
-// import { withFormik, Form, Field } from 'formik'
-// import * as Yup from 'yup'
-// import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { postLogin } from '../actions'
 import { useDispatch, useSelector } from 'react-redux'
