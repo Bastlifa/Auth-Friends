@@ -4,7 +4,19 @@ import './App.css';
 
 function App() {
 
-  
+  const PrivateRoute = ({ component: Component, ...rest }) =>
+  {
+    <Route
+      {...rest}
+      render={props =>
+        localStorage.getItem("token") ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  }
 
   return (
     <div className="App">
