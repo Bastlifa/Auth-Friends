@@ -22,7 +22,19 @@ const LoginForm = (props) =>
     const handleSubmit = event =>
     {
         event.preventDefault()
+        if(isLoading) return
         setIsLoading(true)
+        axios.post("http://localhost:5000/api/login", inputs)
+            .then(res =>
+                {
+                    setIsLoading(false)
+                    console.log(res)
+                })
+            .catch(err =>
+                {
+                    setIsLoading(false)
+                    console.log("error from login:",err.results)
+                })
     }
 
     return (
