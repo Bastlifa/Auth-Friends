@@ -1,18 +1,17 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
+import { postLogin } from '../actions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const LoginForm = (props) =>
 {
-    const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
+    let state = useSelector(state => state)
+
     const [inputs, setInputs] = useState({username: '', password: ''})
-    // useEffect(_ =>
-    //     {
-    //         console.log('inf')
-    //         setIsLoading(props.isLoading)
-    //     }, [props.isLoading])
 
     const handleChange = event =>
     {
@@ -22,19 +21,7 @@ const LoginForm = (props) =>
     const handleSubmit = event =>
     {
         event.preventDefault()
-        if(isLoading) return
-        setIsLoading(true)
-        axios.post("http://localhost:5000/api/login", inputs)
-            .then(res =>
-                {
-                    setIsLoading(false)
-                    console.log(res)
-                })
-            .catch(err =>
-                {
-                    setIsLoading(false)
-                    console.log("error from login:",err.results)
-                })
+        dispatch(postLogin(inputs, props.history))
     }
 
     return (
@@ -63,7 +50,7 @@ const LoginForm = (props) =>
                     />
                 </div>
                 <button style={{width:"175px"}}>
-                    {isLoading ? <Loader type="TailSpin" color="#00BFFF" height={10} width={10} /> 
+                    {state.isLoading ? <Loader type="TailSpin" color="#00BFFF" height={10} width={10} /> 
                     : 'Submit'}
                 </button>
             </form>
