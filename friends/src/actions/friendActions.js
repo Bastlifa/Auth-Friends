@@ -76,3 +76,20 @@ export const postFriend = (inputs) => dispatch =>
                     dispatch({ type: POST_FRIEND_FAIL, payload: err.response })
                 })
 }
+
+export const deleteFriend = (id) => dispatch =>
+{
+    dispatch({ type: DELETE_FRIEND_START })
+    axiosWithAuth()
+        .delete(`http://localhost:5000/api/friends/:${id}`)
+            .then(res =>
+                {
+                    console.log('res from deleteFriend', res)
+                    dispatch({ type: DELETE_FRIEND_SUCCESS, payload: res })
+                })
+            .catch(err => 
+                {
+                    console.log('err from deleteFriend', err.response)
+                    dispatch({ type: DELETE_FRIEND_FAIL, payload: err.response })
+                })
+}

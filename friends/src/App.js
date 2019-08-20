@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <Route path="/login" component={Login} />
+      <Route exact path="/" component={Login} />
       <PrivateRoute path="/friends" component={FriendsList} />
     </div>
   );

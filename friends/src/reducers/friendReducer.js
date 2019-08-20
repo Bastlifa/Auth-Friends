@@ -11,7 +11,9 @@ import {
     PUT_FRIEND_START,
     PUT_FRIEND_SUCCESS,
     PUT_FRIEND_FAIL,
-    postLogin,
+    DELETE_FRIEND_START,
+    DELETE_FRIEND_SUCCESS,
+    DELETE_FRIEND_FAIL,
 } from '../actions'
 
 const initialState =
@@ -78,6 +80,18 @@ export const friendReducer = (state = initialState, action) =>
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case DELETE_FRIEND_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: ""
+            }
+        case DELETE_FRIEND_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                
             }
         default:
             return state

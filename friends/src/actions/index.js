@@ -11,7 +11,11 @@ export {
     PUT_FRIEND_START,
     PUT_FRIEND_SUCCESS,
     PUT_FRIEND_FAIL,
+    DELETE_FRIEND_START,
+    DELETE_FRIEND_SUCCESS,
+    DELETE_FRIEND_FAIL,
     postLogin,
     getFriends,
     postFriend,
+    deleteFriend,
 } from './friendActions'

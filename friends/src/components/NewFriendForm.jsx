@@ -81,6 +81,8 @@ const NewFriendForm = () =>
                 name="email"
                 autoComplete="email"
                 margin="normal"
+                value={inputs.email}
+                onChange={handleChange}
             />
             <Button onClick={handleSubmit} variant="outlined" color="primary" style={{width:"175px", margin:"20px auto"}}>
                 Submit Friend
