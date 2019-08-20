@@ -1,52 +1,91 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
+import Loader from 'react-loader-spinner'
 
 const LoginForm = (props) =>
 {
     const [isLoading, setIsLoading] = useState(false)
+    const [inputs, setInputs] = useState({username: '', password: ''})
+    // useEffect(_ =>
+    //     {
+    //         console.log('inf')
+    //         setIsLoading(props.isLoading)
+    //     }, [props.isLoading])
+
+    const handleChange = event =>
+    {
+        setInputs({...inputs, [event.target.name]: event.target.value})
+    }
+
+    const handleSubmit = event =>
+    {
+        event.preventDefault()
+        setIsLoading(true)
+    }
 
     return (
         <>
-            <Form>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    {props.touched.username && props.errors.username && <p>{props.errors.username}</p>}
-                    <Field type="text" name="username" placeholder="Username" />
+                    {/* {props.touched.username && props.errors.username && <p>{props.errors.username}</p>} */}
+                    {/* <Field type="text" name="username" placeholder="Username" /> */}
+                    <input 
+                        type="text" 
+                        name="username" 
+                        placeholder="Username" 
+                        value={inputs.username}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div>
-                    {props.touched.password && props.errors.password && <p>{props.errors.password}</p>}
-                    <Field type="password" name="password" placeholder="Password" />
+                    {/* {props.touched.password && props.errors.password && <p>{props.errors.password}</p>} */}
+                    {/* <Field type="password" name="password" placeholder="Password" /> */}
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Password" 
+                        value={inputs.password}
+                        onChange={handleChange}
+                    />
                 </div>
-                <button>Submit</button>
-            </Form>
+                <button style={{width:"175px"}}>
+                    {isLoading ? <Loader type="TailSpin" color="#00BFFF" height={10} width={10} /> 
+                    : 'Submit'}
+                </button>
+            </form>
         </>
     )
 }
 
-const FormikLoginForm = withFormik({
-    mapPropsToValues({ username, password })
-    {
-        return {
-            username: username || "",
-            password: password || "",
-        }
-    },
+export default LoginForm
 
-    //vallidation
-    validationSchema: Yup.object().shape({
-        username: Yup.string()
-            .required("Username is required"),
-        password: Yup.string()
-            .min(6, "Password must be 6 characters or longer")
-            .required("Password is required")
-    }),
+// const FormikLoginForm = withFormik({
+//     mapPropsToValues({ username, password, isLoading })
+//     {
+//         return {
+//             username: username || "",
+//             password: password || "",
+//         }
+//     },
 
-    handleSubmit(values)
-    {
-        return
-    }
+//     //vallidation
+//     validationSchema: Yup.object().shape({
+//         username: Yup.string()
+//             .required("Username is required"),
+//         password: Yup.string()
+//             .min(6, "Password must be 6 characters or longer")
+//             .required("Password is required")
+//     }),
+
+//     handleSubmit(values)
+//     {
+//         isLoading = true
+//         // axios.post()
+//     }
 
 
-})(LoginForm)
+// })(LoginForm)
 
-export default FormikLoginForm
+// export default FormikLoginForm
