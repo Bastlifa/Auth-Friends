@@ -38,6 +38,8 @@ const NewFriendForm = () =>
         setInputs({...inputs, [event.target.name]: event.target.value})
     }
 
+    const checkSubmit = event => event.keyCode === 13 ? handleSubmit(event) : null
+
     const handleSubmit = event =>
     {
         event.preventDefault()
@@ -58,6 +60,7 @@ const NewFriendForm = () =>
                 onChange={handleChange}
                 margin="normal"
                 name="name"
+                onKeyDown={checkSubmit}
             />
             <TextField
                 id="standard-number"
@@ -72,6 +75,7 @@ const NewFriendForm = () =>
                 }}
                 margin="normal"
                 name="age"
+                onKeyDown={checkSubmit}
             />
             <TextField
                 id="standard-email-input"
@@ -83,6 +87,7 @@ const NewFriendForm = () =>
                 margin="normal"
                 value={inputs.email}
                 onChange={handleChange}
+                onKeyDown={checkSubmit}
             />
             <Button onClick={handleSubmit} variant="outlined" color="primary" style={{width:"175px", margin:"20px auto"}}>
                 Submit Friend
