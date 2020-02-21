@@ -1,0 +1,1 @@
+export {friendReducer} from './friendReducer'
